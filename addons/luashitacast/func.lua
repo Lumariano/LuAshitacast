@@ -547,6 +547,13 @@ local LockSet = function(set, seconds)
 end
 
 local LockStyle = function(set)
+    if (set == nil) then
+        local equipSet = gData.GetEquipment();
+        for slot, equip in pairs(equipSet) do
+            equipSet[slot] = equip.Name;
+        end
+        set = equipSet;
+    end
     local reducedSet = {};
     for slot,equip in pairs(set) do
         local equipSlot = gData.GetEquipSlot(slot);
